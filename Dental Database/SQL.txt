@@ -1,0 +1,309 @@
+connect system
+
+CREATE USER Kirtipur1_Hospital IDENTIFIED By hospital;
+GRANT CONNECT, RESOURCE TO Kirtipur1_Hospital;
+
+spool ''
+
+Connect Kirtipur1_Hospital;
+hospital
+
+CREATE TABLE Patient(
+P_ID VARCHAR2(50) NOT NULL CONSTRAINT P_ID Primary KEY,
+P_Name VARCHAR2(50) NOT NULL,
+P_Category VARCHAR2(50) NOT NULL);
+
+INSERT INTO PATIENT values( '101', 'Monik Shrestha','New Patient');
+INSERT INTO PATIENT values( '102', 'Bishal Pradhan','Staff');
+INSERT INTO PATIENT values( '103', 'Bikalpa Kunwar','New Patient');
+INSERT INTO PATIENT values( '104', 'Nishant Chetri','Old patient');
+INSERT INTO PATIENT values( '105', 'David Dangol','Staff');
+INSERT INTO PATIENT values( '106', 'Kshitiz KC','New Patient');
+INSERT INTO PATIENT values( '107', 'Krishna Panta','Old Patient');
+INSERT INTO PATIENT values( '108', 'Yashodha Ghimire','New Patient');
+INSERT INTO PATIENT values( '109', 'Prakash Acharya','New Patient');
+INSERT INTO PATIENT values( '110', 'Pranesh Gautam','Old Patient');
+
+CREATE TABLE P_Add(
+P_Add_ID VARCHAR2(50) NOT NULL CONSTRAINT P_Add_ID PRIMARY KEY,
+P_Country VARCHAR2(50) NOT NULL,
+P_State VARCHAR2(50) NOT NULL,
+P_Street_Name VARCHAR2(50) NOT NULL,
+P_Street_No VARCHAR2(50) NOT NULL);
+
+INSERT INTO P_Add values('A1', 'Nepal', 'Gandaki', 'Besisahar', '11');
+INSERT INTO P_Add values('A2', 'Nepal', 'Sudarpaschim', 'Tikapur', '9');
+INSERT INTO P_Add values('A3', 'Nepal', 'Karnali', 'Simikot', '8');
+INSERT INTO P_Add values('A4', 'Nepal', 'Karnali', 'Jumla', '7');
+INSERT INTO P_Add values('A5', 'Nepal', 'Gandaki', 'Syangja', '9');
+INSERT INTO P_Add values('A6', 'Nepal', 'Gandaki', 'Damauli', '13');
+INSERT INTO P_Add values('A7', 'Nepal', 'Sudarpaschim', 'Kailali', '2');
+INSERT INTO P_Add values('A8', 'Nepal', 'Karnali', 'Jumla', '6');
+INSERT INTO P_Add values('A9', 'Nepal', 'Gandaki', 'Besisahar', '4');
+INSERT INTO P_Add values('A10','Nepal', 'Karnali', 'Gamgadhi', '10');
+
+CREATE TABLE P_Add_Details(
+P_Add_ID VARCHAR2(50) NOT NULL, CONSTRAINT P_Add_ID_fk FOREIGN KEY(P_Add_ID) REFERENCES P_Add(P_Add_ID),
+P_ID VARCHAR2(50) NOT NULL, CONSTRAINT Patient_fk FOREIGN KEY(P_ID) REFERENCES Patient(P_ID));
+
+INSERT INTO P_Add_Details values('A1', '101');
+INSERT INTO P_Add_Details values('A2', '102');
+INSERT INTO P_Add_Details values('A3', '103');
+INSERT INTO P_Add_Details values('A4', '104');
+INSERT INTO P_Add_Details values('A5', '105');
+INSERT INTO P_Add_Details values('A6', '106');
+INSERT INTO P_Add_Details values('A7', '107');
+INSERT INTO P_Add_Details values('A8', '108');
+INSERT INTO P_Add_Details values('A9', '109');
+INSERT INTO P_Add_Details values('A10', '110');
+
+CREATE TABLE P_Cont(
+P_Cont_ID VARCHAR2(50) NOT NULL CONSTRAINT P_Cont_ID PRIMARY KEY,
+P_Ph_Num VARCHAR2(50) NOT NULL,
+P_Fax_Num VARCHAR2(50),
+P_Cell_Num VARCHAR2(50) NOT NULL,
+P_Email1 VARCHAR2(50) NOT NULL,
+P_Email2 VARCHAR2(50));
+
+INSERT INTO P_Cont values('PC1', '5545410', '+97714430555', '9808231246', 'sailesh1@gmail.com', 'sagarrana10@gmail.com');
+INSERT INTO P_Cont values('PC2', '5529004', '+97714721447', '9845645646', 'surya123@gmail.com', 'suryabhai@gmail.com');
+INSERT INTO P_Cont values('PC3', '4310434', '+97714482957', '9846456132', 'dangerboy13@gmail.com', 'beaware@gmail.com');
+INSERT INTO P_Cont values('PC4', '6006213', '+97714480458', '9801564562', 'kaizoku11@gmail.com', 'hokage10@gmail.com');
+INSERT INTO P_Cont values('PC5', '4314568', '+97714561265', '9876548923', 'sirish1@gmail.com', 'sirsir10@gmail.com');
+INSERT INTO P_Cont values('PC6', '5582476', '+97714896354', '9856732100', 'invoker55@gmail.com', 'quaswexexort@gmail.com');
+INSERT INTO P_Cont values('PC7', '5526412', '+97714697654', '9866545331', 'createnature@gmail.com', 'naturalcal@gmail.com');
+INSERT INTO P_Cont values('PC8', '4467100', '+97714659595', '9854542356', 'yummyfood@gmail.com', 'tagfoodies@gmail.com');
+INSERT INTO P_Cont values('PC9', '5562014', '+97714658876', '9823101560', 'cancergaming@gmail.com', 'gameleap10@gmail.com');
+INSERT INTO P_Cont values('PC10', '4344619', '+97714473282', '9842312120', 'tradeit@gmail.com', 'zbttrading@gmail.com');
+
+CREATE TABLE P_Cont_Details(
+P_Cont_ID VARCHAR2(50) NOT NULL, CONSTRAINT P_Cont_ID_fk FOREIGN KEY (P_Cont_ID) REFERENCES P_Cont(P_Cont_ID),
+P_Add_ID VARCHAR2(50) NOT NULL, CONSTRAINT P_Add_ID1_fk FOREIGN KEY (P_Add_ID) REFERENCES P_Add(P_Add_ID),
+P_ID VARCHAR2(50) NOT NULL, CONSTRAINT P_ID_fk FOREIGN KEY (P_ID) REFERENCES Patient(P_ID));
+
+INSERT INTO P_Cont_Details values('PC1', 'A1', '101');
+INSERT INTO P_Cont_Details values('PC2', 'A2', '102');
+INSERT INTO P_Cont_Details values('PC3', 'A3', '103');
+INSERT INTO P_Cont_Details values('PC4', 'A4', '104');
+INSERT INTO P_Cont_Details values('PC5', 'A5', '105');
+INSERT INTO P_Cont_Details values('PC6', 'A6', '106');
+INSERT INTO P_Cont_Details values('PC7', 'A7', '107');
+INSERT INTO P_Cont_Details values('PC8', 'A8', '108');
+INSERT INTO P_Cont_Details values('PC9', 'A9', '109');
+INSERT INTO P_Cont_Details values('PC10', 'A10', '110');
+
+CREATE TABLE Staff(
+S_ID VARCHAR2(50) NOT NULL CONSTRAINT S_ID PRIMARY KEY,
+S_Name VARCHAR2(50) NOT NULL,
+S_Certification VARCHAR2(50) NOT NULL,
+S_Type VARCHAR2(50) NOT NULL);
+
+INSERT INTO Staff values('S1', 'Abhishesh Pradhan', 'Certified', 'Doctor');
+INSERT INTO Staff values('S2', 'Pradeep Raj Bhandari', 'Certified', 'Doctor');
+INSERT INTO Staff values('S3', 'Pooja Shrestha', 'Certified', 'Nurse');
+INSERT INTO Staff values('S4', 'Poonam Agrawal', 'Un-Certified', 'Doctor');
+INSERT INTO Staff values('S5', 'Pranish Shakya', 'Certified', 'Doctor');
+INSERT INTO Staff values('S6', 'Pranav Pradhan', 'Certified', 'Doctor');
+INSERT INTO Staff values('S7', 'Subha Amatya', 'Un-Certified', 'Nurse');
+INSERT INTO Staff values('S8', 'Sulav Shrestha', 'Un-Certified', 'Doctor');
+INSERT INTO Staff values('S9', 'Kunal Shah', 'Certified', 'Doctor');
+INSERT INTO Staff values('S10', 'Manish Baniya', 'Certified', 'Doctor');
+
+CREATE TABLE Staff_Pat_Relation(
+S_ID VARCHAR2(50) NOT NULL, CONSTRAINT S_ID_fk FOREIGN KEY (S_ID) REFERENCES Staff(S_ID),
+P_ID VARCHAR2(50) NOT NULL, CONSTRAINT P_ID1_fk FOREIGN KEY (P_ID) REFERENCES Patient(P_ID));
+
+INSERT INTO Staff_Pat_Relation values('S1', '101');
+INSERT INTO Staff_Pat_Relation values('S2', '102');
+INSERT INTO Staff_Pat_Relation values('S3', '103');
+INSERT INTO Staff_Pat_Relation values('S4', '104');
+INSERT INTO Staff_Pat_Relation values('S5', '105');
+INSERT INTO Staff_Pat_Relation values('S6', '106');
+INSERT INTO Staff_Pat_Relation values('S7', '107');
+INSERT INTO Staff_Pat_Relation values('S8', '108');
+INSERT INTO Staff_Pat_Relation values('S9', '109');
+INSERT INTO Staff_Pat_Relation values('S10', '110');
+
+CREATE TABLE S_Add(
+S_Add_ID VARCHAR2(50) NOT NULL CONSTRAINT S_Add_ID PRIMARY KEY,
+S_Country VARCHAR2(50) NOT NULL,
+S_State VARCHAR2(50) NOT NULL,
+S_Street VARCHAR2(50) NOT NULL,
+S_Street_No VARCHAR2(50) NOT NULL);
+
+INSERT INTO S_Add values('SA1', 'Nepal', 'Province 3', 'Lalitpur', '2');
+INSERT INTO S_Add values('SA2', 'Nepal', 'Province 3', 'Kathmandu', '10');
+INSERT INTO S_Add values('SA3', 'Nepal', 'Province 3', 'Lalitpur', '7');
+INSERT INTO S_Add values('SA4', 'Nepal', 'Sudarpaschim', 'Tikapur', '3');
+INSERT INTO S_Add values('SA5', 'Nepal', 'Province 3', 'Chitwan', '11');
+INSERT INTO S_Add values('SA6', 'Nepal', 'Province 3', 'Lalitpur', '9');
+INSERT INTO S_Add values('SA7', 'Nepal', 'Province 3', 'Lalitpur', '5');
+INSERT INTO S_Add values('SA8', 'Nepal', 'Gandaki', 'Damauli', '8');
+INSERT INTO S_Add values('SA9', 'Nepal', 'Karnali', 'Besisahar', '4');
+INSERT INTO S_Add values('SA10', 'Nepal', 'Province 3', 'Kathmandu', '14');
+
+CREATE TABLE S_Add_Details(
+S_Add_ID VARCHAR2(50) NOT NULL, CONSTRAINT S_Add_ID_fk FOREIGN KEY (S_Add_ID) REFERENCES S_Add(S_Add_ID),
+P_ID VARCHAR2(50) NOT NULL, CONSTRAINT P_ID2_fk FOREIGN KEY (P_ID) REFERENCES Patient(P_ID),
+S_ID VARCHAR2(50) NOT NULL, CONSTRAINT S_ID1_fk FOREIGN KEY (S_ID) REFERENCES Staff(S_ID));
+
+INSERT INTO S_Add_Details values('SA1', '101', 'S1');
+INSERT INTO S_Add_Details values('SA2', '102', 'S2');
+INSERT INTO S_Add_Details values('SA3', '103', 'S3');
+INSERT INTO S_Add_Details values('SA4', '104', 'S4');
+INSERT INTO S_Add_Details values('SA5', '105', 'S5');
+INSERT INTO S_Add_Details values('SA6', '106', 'S6');
+INSERT INTO S_Add_Details values('SA7', '107', 'S7');
+INSERT INTO S_Add_Details values('SA8', '108', 'S8');
+INSERT INTO S_Add_Details values('SA9', '109', 'S9');
+INSERT INTO S_Add_Details values('SA10', '110', 'S10');
+
+CREATE TABLE S_Cont(
+S_Cont_ID VARCHAR2(50) NOT NULL CONSTRAINT S_Cont_ID PRIMARY KEY,
+S_Phone_Num VARCHAR2(50) NOT NULL,
+S_Fax_Num VARCHAR2(50),
+S_Cell_Num VARCHAR2(50) NOT NULL,
+S_Email1 VARCHAR2(50) NOT NULL,
+S_Email2 VARCHAR2(50));
+
+INSERT INTO S_Cont values('SC1', '5236252', '+97714897987', '9855599332', 'abhi1@gmail.com', 'abhi123@gmail.com');
+INSERT INTO S_Cont values('SC2', '5252363', '+97714756483', '9855542053', 'pradeep1@gmail.com', 'pra1234@gmail.com');
+INSERT INTO S_Cont values('SC3', '4902027', '+97714218578', '9855553060', 'puzz10@gmail.com', 'pzzasth@gmail.com');
+INSERT INTO S_Cont values('SC4', '4261945', '+97714456486', '9855529916', 'punamagra@gmail.com', 'poon11@gmail.com');
+INSERT INTO S_Cont values('SC5', '4241712', '+97714821235', '9855514160', 'pranISH@gmail.com', 'pra101@gmail.com');
+INSERT INTO S_Cont values('SC6', '5226497', '+97714143245', '9855578206', 'Pranav@gmail.com', 'pran13@gmail.com');
+INSERT INTO S_Cont values('SC7', '4273524', '+97714153543', '9855502792', 'Subha10@gmail.com', 'bhupesh1@gmail.com');
+INSERT INTO S_Cont values('SC8', '5200021', '+97714213487', '9855583085', 'sulavstha@gmail.com', 'sulavshrestha@gmail.com');
+INSERT INTO S_Cont values('SC9', '4314462', '+97714224564', '9840760646', 'kunny1@gmail.com', 'kunalchef@gmail.com');
+INSERT INTO S_Cont values('SC10', '5522476', '+97714345716', '9819112236', 'gachimanish@gmail.com', 'alphamale@gmail.com');
+
+CREATE TABLE S_Cont_Details(
+S_Cont_ID VARCHAR2(50) NOT NULL, CONSTRAINT S_Cont_ID_fk FOREIGN KEY (S_Cont_ID) REFERENCES S_Cont(S_Cont_ID),
+S_Add_ID VARCHAR2(50) NOT NULL, CONSTRAINT S_Add_ID1_fk FOREIGN KEY (S_Add_ID) REFERENCES S_Add(S_Add_ID),
+S_ID VARCHAR2(50) NOT NULL, CONSTRAINT S_ID2_fk FOREIGN KEY (S_ID) REFERENCES Staff(S_ID));
+
+INSERT INTO S_Cont_Details values('SC1', 'SA1', 'S1');
+INSERT INTO S_Cont_Details values('SC2', 'SA2', 'S2');
+INSERT INTO S_Cont_Details values('SC3', 'SA3', 'S3');
+INSERT INTO S_Cont_Details values('SC4', 'SA4', 'S4');
+INSERT INTO S_Cont_Details values('SC5', 'SA5', 'S5');
+INSERT INTO S_Cont_Details values('SC6', 'SA6', 'S6');
+INSERT INTO S_Cont_Details values('SC7', 'SA7', 'S7');
+INSERT INTO S_Cont_Details values('SC8', 'SA8', 'S8');
+INSERT INTO S_Cont_Details values('SC9', 'SA9', 'S9');
+INSERT INTO S_Cont_Details values('SC10', 'SA10', 'S10');
+
+CREATE TABLE App(
+App_ID VARCHAR2(50) NOT NULL CONSTRAINT App_ID PRIMARY KEY,
+App_Charge VARCHAR2(50) NOT NULL,
+App_Time VARCHAR2(50) NOT NULL,
+Commission VARCHAR2(50) NOT NULL);
+
+INSERT INTO App values('A1', '10000', '2019,19th of Jan, 12:00', '10%');
+INSERT INTO App values('A2', '15000', '2019,12th Jan,10:00', '10%');
+INSERT INTO App values('A3', '10000', '2019,20th Jan,10:30', '10%');
+INSERT INTO App values('A4', '20000', '2019,24th Jan,12:00', '10%');
+INSERT INTO App values('A5', '14500', '2019,26th Jan,12:30', '10%');
+INSERT INTO App values('A6', '22000', '2019,29th Jan,10:00', '10%');
+INSERT INTO App values('A7', '10000', '2019,6th Feb,01:00', '10%');
+INSERT INTO App values('A8', '15000', '2019,10th Feb,11:00', '10%');
+INSERT INTO App values('A9', '12000', '2019,12th Feb,11:30', '10%');
+INSERT INTO App values('A10', '12500', '2019,14th Feb,11:00', '10%');
+
+CREATE TABLE App_Pat_relation(
+App_ID VARCHAR2(50) NOT NULL, CONSTRAINT App_ID_fk FOREIGN KEY (App_ID) REFERENCES App(App_ID),
+P_ID VARCHAR2(50) NOT NULL, CONSTRAINT P_ID3_fk FOREIGN KEY (P_ID) REFERENCES Patient(P_ID),
+S_ID VARCHAR2(50) NOT NULL, CONSTRAINT S_ID3_fk FOREIGN KEY (S_ID) REFERENCES Staff(S_ID));
+
+INSERT INTO App_Pat_relation values('A1', '101', 'S1');
+INSERT INTO App_Pat_relation values('A2', '102', 'S2');
+INSERT INTO App_Pat_relation values('A3', '103', 'S3');
+INSERT INTO App_Pat_relation values('A4', '104', 'S4');
+INSERT INTO App_Pat_relation values('A5', '105', 'S5');
+INSERT INTO App_Pat_relation values('A6', '106', 'S6');
+INSERT INTO App_Pat_relation values('A7', '107', 'S7');
+INSERT INTO App_Pat_relation values('A8', '108', 'S8');
+INSERT INTO App_Pat_relation values('A9', '109', 'S9');
+INSERT INTO App_Pat_relation values('A10', '110', 'S10');
+
+CREATE TABLE Ward(
+Ward_ID VARCHAR2(50) NOT NULL CONSTRAINT Ward_ID PRIMARY KEY,
+Ward_Name VARCHAR2(50) NOT NULL);
+
+INSERT INTO Ward values('W1', 'Emergency Ward');
+INSERT INTO Ward values('W2', 'Neurology Ward');
+INSERT INTO Ward values('W3', 'Emergency Ward');
+INSERT INTO Ward values('W4', 'Medical Ward');
+INSERT INTO Ward values('W5', 'Surgical Ward');
+INSERT INTO Ward values('W6', 'Maternity Ward');
+INSERT INTO Ward values('W7', 'ICU Ward');
+INSERT INTO Ward values('W8', 'Psychiatric Ward');
+INSERT INTO Ward values('W9', 'Emergency Ward');
+INSERT INTO Ward values('W10', 'Cardiology Ward');
+
+CREATE TABLE Treatment(
+Treat_ID VARCHAR2(50) NOT NULL CONSTRAINT Treat_ID PRIMARY KEY,
+Ward_ID VARCHAR2(50) NOT NULL, CONSTRAINT Ward_ID_fk FOREIGN KEY (Ward_ID) REFERENCES Ward(Ward_ID),
+Treat_Date DATE NOT NULL,
+Treat_Charge VARCHAR2(50) NOT NULL,
+Treat_Type VARCHAR2(50) NOT NULL);
+
+INSERT INTO Treatment values ('T1', 'W1', TO_DATE('2003/05/03', 'yyyy/mm/dd'), '30000', 'Diarrhoea');		
+INSERT INTO Treatment values('T2', 'W2', TO_DATE('2019/02/17', 'yyyy/mm/dd' ), '55000', 'Apendicitis');	
+INSERT INTO Treatment values('T3', 'W3', TO_DATE('2019/02/24', 'yyyy/mm/dd' ), '20000', 'Breast Cancer');	
+INSERT INTO Treatment values('T4', 'W4', TO_DATE('2019/03/13', 'yyyy/mm/dd' ), '75000', 'Kidney Stone');	
+INSERT INTO Treatment values('T5', 'W5', TO_DATE('2019/05/30', 'yyyy/mm/dd' ), '30000', 'Mumps');	
+INSERT INTO Treatment values('T6', 'W6', TO_DATE('2019/06/9', 'yyyy/mm/dd' ), '80000', 'Hyperthyroidism');		
+INSERT INTO Treatment values('T7', 'W7', TO_DATE('2019/07/5', 'yyyy/mm/dd' ), '70000', 'Bronchitis');		
+INSERT INTO Treatment values('T8', 'W8', TO_DATE('2019/11/21', 'yyyy/mm/dd' ), '25000', 'Yeast Infection');	
+INSERT INTO Treatment values('T9', 'W9', TO_DATE('2019/12/13', 'yyyy/mm/dd' ), '30000', 'Acute Pancreatitis');	
+INSERT INTO Treatment values('T10', 'W10', TO_DATE('2019/12/15', 'yyyy/mm/dd' ), '60000', 'Alzheimer');
+
+CREATE TABLE Treat_Ward_Relation(
+Treat_ID VARCHAR2(50) NOT NULL, CONSTRAINT Treat_ID_fk FOREIGN KEY (Treat_ID) REFERENCES Treatment(Treat_ID),
+App_ID VARCHAR2(50) NOT NULL, CONSTRAINT App_ID1_fk FOREIGN KEY (App_ID) REFERENCES App(App_ID),
+P_ID VARCHAR2(50) NOT NULL, CONSTRAINT P_ID4_fk FOREIGN KEY (P_ID) REFERENCES Patient(P_ID),
+S_ID VARCHAR2(50) NOT NULL, CONSTRAINT S_ID4_fk FOREIGN KEY (S_ID) REFERENCES Staff(S_ID));
+
+INSERT INTO Treat_Ward_Relation values('T1', 'A1', '101', 'S1');
+INSERT INTO Treat_Ward_Relation values('T2', 'A2', '102', 'S2');
+INSERT INTO Treat_Ward_Relation values('T3', 'A3', '103', 'S3');
+INSERT INTO Treat_Ward_Relation values('T4', 'A4', '104', 'S4');
+INSERT INTO Treat_Ward_Relation values('T5', 'A5', '105', 'S5');
+INSERT INTO Treat_Ward_Relation values('T6', 'A6', '106', 'S6');
+INSERT INTO Treat_Ward_Relation values('T7', 'A7', '107', 'S7');
+INSERT INTO Treat_Ward_Relation values('T8', 'A8', '108', 'S8');
+INSERT INTO Treat_Ward_Relation values('T9', 'A9', '109', 'S9');
+INSERT INTO Treat_Ward_Relation values('T10', 'A10', '110', 'S10');
+
+DROP:
+drop table P_Add_Details;
+drop table P_Cont_Details;
+drop table Staff_Pat_Relation;
+drop table S_Add_Details;
+drop table S_Cont_Details;
+drop table App_Pat_relation;
+drop table Treat_Ward_Relation;
+drop table Patient;
+drop table P_Add;
+drop table P_Cont;
+drop table Staff;
+drop table S_Add;
+drop table S_Cont;
+drop table App;
+drop table ward;
+drop table Treatment;
+
+INFORMATION QUERIES:
+
+1. SELECT * from Patient where P_Category = 'Old Patient' or P_Category = 'New Patient';
+2. SELECT * FROM Patient JOIN P_Cont_Details ON (Patient.P_ID = P_Cont_Details.P_ID) JOIN P_Cont ON (P_Cont.P_Cont_ID=P_Cont_Details.P_Cont_ID) JOIN P_Add ON (P_Cont_Details.P_Add_ID = P_Add.P_Add_ID); 
+3. SELECT Staff.S_ID, Staff.S_Name, Staff.S_Certification, App.App_ID,App.Commission FROM Staff JOIN Treat_Ward_Relation ON (Staff.S_ID = Treat_Ward_Relation.S_ID) JOIN App ON (Treat_Ward_Relation.App_ID = App.App_ID) WHERE STAFF.S_Certification= 'Certified';
+4. SELECT * from Patient where P_Category = 'Staff';
+
+TRANSACTION QUERIES:
+
+1. Select  PATIENT.P_Category, Staff.S_ID, Staff.S_Name, Staff.S_Certification, Staff.S_Type FROM Staff  JOIN Treat_Ward_Relation ON (Treat_Ward_Relation.S_ID = Staff.S_ID)  JOIN PATIENT ON (Treat_Ward_Relation.P_ID = Patient.P_ID) AND PATIENT.P_Category = 'Staff';
+2. SELECT Treatment.Treat_ID, Treatment.Ward_ID, Ward.Ward_Name FROM Treatment  INNER JOIN Ward ON(Treatment.Ward_ID= Ward.Ward_ID) WHERE Ward_Name ='Emergency Ward';
+3. SELECT Staff.S_ID, Staff.S_Name, Staff.S_Type, Staff.S_Certification, App.App_Time FROM Staff JOIN Treat_Ward_Relation ON(Staff.S_ID= Treat_Ward_Relation.S_ID) JOIN App ON(Treat_Ward_Relation.App_ID = App.App_ID) AND App_Time ='2019,24th Jan,12:00';
+4. Select * from Patient Join App_Pat_relation On (App_Pat_relation.P_ID = Patient.P_ID ) Join App On (App_Pat_relation.App_ID = App.App_ID) Where App_Time = '2019,24th Jan,12:00';

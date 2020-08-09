@@ -1,0 +1,9 @@
+SQL> SELECT Treatment.Treat_ID, Treatment.Ward_ID, Ward.Ward_Name FROM Treatment  INNER JOIN Ward ON(Treatment.Ward_ID= Ward.Ward_ID) WHERE Ward_Name ='Emergency Ward';
+
+TREAT_ID                                           WARD_ID                                            WARD_NAME                                                                                         
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------                                                
+T1                                                 W1                                                 Emergency Ward                                                                                    
+T3                                                 W3                                                 Emergency Ward                                                                                    
+T9                                                 W9                                                 Emergency Ward                                                                                    
+
+SQL> spool off

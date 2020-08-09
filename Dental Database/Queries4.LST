@@ -1,0 +1,10 @@
+SQL> SELECT * from Patient where P_Category = 'Staff'
+  2  
+SQL> SELECT * from Patient where P_Category = 'Staff';
+
+P_ID                                               P_NAME                                             P_CATEGORY                                                                                        
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------                                                
+102                                                Bishal Pradhan                                     Staff                                                                                             
+105                                                David Dangol                                       Staff                                                                                             
+
+SQL> spool off

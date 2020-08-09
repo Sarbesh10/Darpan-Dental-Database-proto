@@ -1,0 +1,15 @@
+SQL> SELECT * from Patient where P_Category = 'Old Patient' or P_Category = 'New Patient';
+
+P_ID                                               P_NAME                                             P_CATEGORY                                                                                        
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------                                                
+101                                                Monik Shrestha                                     New Patient                                                                                       
+103                                                Bikalpa Kunwar                                     New Patient                                                                                       
+106                                                Kshitiz KC                                         New Patient                                                                                       
+107                                                Krishna Panta                                      Old Patient                                                                                       
+108                                                Yashodha Ghimire                                   New Patient                                                                                       
+109                                                Prakash Acharya                                    New Patient                                                                                       
+110                                                Pranesh Gautam                                     Old Patient                                                                                       
+
+7 rows selected.
+
+SQL> spool off

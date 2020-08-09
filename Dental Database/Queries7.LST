@@ -1,0 +1,11 @@
+SQL> SELECT Staff.S_ID, Staff.S_Name, Staff.S_Type, Staff.S_Certification, App.App_Time FROM Staff JOIN Treat_Ward_Relation ON(Staff.S_ID= Treat_Ward_Relation.S_ID) JOIN App ON(Treat_Ward_Relation.App_ID = App.App_ID) AND App_Time ='2019,24th Jan,12:00';
+
+S_ID                                               S_NAME                                             S_TYPE                                                                                            
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------                                                
+S_CERTIFICATION                                    APP_TIME                                                                                                                                             
+-------------------------------------------------- --------------------------------------------------                                                                                                   
+S4                                                 Poonam Agrawal                                     Doctor                                                                                            
+Un-Certified                                       2019,24th Jan,12:00                                                                                                                                  
+                                                                                                                                                                                                        
+
+SQL> spool off

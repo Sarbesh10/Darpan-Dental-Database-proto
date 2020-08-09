@@ -1,0 +1,41 @@
+SQL> SELECT Staff.S_ID, Staff.S_Name, Staff.S_Certification, App.App_ID,App.Commission FROM Staff JOIN Treat_Ward_Relation ON (Staff.S_ID = Treat_Ward_Relation.S_ID) JOIN App ON (Treat_Ward_Relation.App_ID = App.App_ID) WHERE STAFF.S_Certification= 'Certified';
+
+S_ID                                               S_NAME                                             S_CERTIFICATION                                                                                   
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------                                                
+APP_ID                                             COMMISSION                                                                                                                                           
+-------------------------------------------------- --------------------------------------------------                                                                                                   
+S1                                                 Abhishesh Pradhan                                  Certified                                                                                         
+A1                                                 10%                                                                                                                                                  
+                                                                                                                                                                                                        
+S2                                                 Pradeep Raj Bhandari                               Certified                                                                                         
+A2                                                 10%                                                                                                                                                  
+                                                                                                                                                                                                        
+S3                                                 Pooja Shrestha                                     Certified                                                                                         
+A3                                                 10%                                                                                                                                                  
+                                                                                                                                                                                                        
+
+S_ID                                               S_NAME                                             S_CERTIFICATION                                                                                   
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------                                                
+APP_ID                                             COMMISSION                                                                                                                                           
+-------------------------------------------------- --------------------------------------------------                                                                                                   
+S5                                                 Pranish Shakya                                     Certified                                                                                         
+A5                                                 10%                                                                                                                                                  
+                                                                                                                                                                                                        
+S6                                                 Pranav Pradhan                                     Certified                                                                                         
+A6                                                 10%                                                                                                                                                  
+                                                                                                                                                                                                        
+S9                                                 Kunal Shah                                         Certified                                                                                         
+A9                                                 10%                                                                                                                                                  
+                                                                                                                                                                                                        
+
+S_ID                                               S_NAME                                             S_CERTIFICATION                                                                                   
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------                                                
+APP_ID                                             COMMISSION                                                                                                                                           
+-------------------------------------------------- --------------------------------------------------                                                                                                   
+S10                                                Manish Baniya                                      Certified                                                                                         
+A10                                                10%                                                                                                                                                  
+                                                                                                                                                                                                        
+
+7 rows selected.
+
+SQL> spool off

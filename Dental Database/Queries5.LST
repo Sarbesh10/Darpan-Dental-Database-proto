@@ -1,0 +1,14 @@
+SQL> Select  PATIENT.P_Category, Staff.S_ID, Staff.S_Name, Staff.S_Certification, Staff.S_Type FROM Staff JOIN Treat_Ward_Relation ON (Treat_Ward_Relation.S_ID = Staff.S_ID) JOIN PATIENT ON (Treat_Ward_Relation.P_ID = Patient.P_ID) AND PATIENT.P_Category = 'Staff';
+
+P_CATEGORY                                         S_ID                                               S_NAME                                                                                            
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------                                                
+S_CERTIFICATION                                    S_TYPE                                                                                                                                               
+-------------------------------------------------- --------------------------------------------------                                                                                                   
+Staff                                              S2                                                 Pradeep Raj Bhandari                                                                              
+Certified                                          Doctor                                                                                                                                               
+                                                                                                                                                                                                        
+Staff                                              S5                                                 Pranish Shakya                                                                                    
+Certified                                          Doctor                                                                                                                                               
+                                                                                                                                                                                                        
+
+SQL> spool off
